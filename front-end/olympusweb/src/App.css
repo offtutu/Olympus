@@ -1,0 +1,1107 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* Aqui seria a configuração raiz do projeto, ela como se fosse uma classe principal no POO com todas as outras classes herdando as caracteristicas dela */
+:root {
+  /* Aqui são as cores de fundo */
+  --bg-dark: #090b0e;
+  --bg-main: #0f1217;
+  --bg-card: #151a22;
+  --bg-card-hover: #1c232e;
+  --bg-sidebar: #090b0e;
+  /* Aqui são as cores do texto */
+  --text-main: #f3f4f6;
+  --text-muted: #8896a7;
+  /* Aqui são as cores principais, basicamente oque moldou a indetidade viual */
+  --primary: #e63946;
+  --primary-hover: #f75562;
+  --primary-glow: rgba(230, 57, 70, 0.25);
+  
+  /* Aqui são as cores destaques */
+  --accent-cyan: #06d6a0;
+  --accent-cyan-glow: rgba(6, 214, 160, 0.2);
+  --accent-blue: #1d3557;
+  --accent-indigo: #4895ef;
+  --accent-amber: #f8961e;
+  
+  /* Aqui são as cores das bordas */
+  --border-color: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.1);
+  --border-focus: #e63946;
+  
+  /* Aqui são as modificações da borda, deixando ela mais arrendondada */ 
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  
+  /* Aqui é o sistema de sombreado */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.6);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Aqui é um reset dos presets já definido do navegador, ele ajuda e facilita a personalização com o CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Aqui são configurações basicas para o corpo do site, fazendo pequenas adaptações para cada navegador */
+body {
+  min-height: 100vh;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Aqui é a customização da ScrollBar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #252e3c;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #344054;
+}
+
+/* Aqui divide o ecrã entre a barra lateral e o conteudo principal do site */
+.dashboard-shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+/* Aqui é a configuração da sidebar no geral */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 30px 24px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* aqui é o ajuste da logo da Olympus */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+/* Aqui é a customização da logo */
+.logo-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  object-fit: contain;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Aqui são mais ajustes na logo, esse aqui seria o letreiro da logo*/
+.sidebar-logo strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
+/* Aqui são mais outros ajutes, onde fica o subtitulo para oque o site serve */
+.sidebar-logo small {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 1px;
+}
+
+/* Aqui é parte da nvageção rapida */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+/* Aqui é uma customização para quando o usuario não passar o mouse o texto ficar apaagado  */
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+}
+
+/* Aqui é para quando o usario o mouse no texto, ele acender*/
+.sidebar-nav a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Aqui é para marcar qual pagina da navegação rapida está ativa, como só tem uma pagina, apenas o painel está ativo */
+.sidebar-nav a.active {
+  color: #fff;
+  background: rgba(230, 57, 70, 0.1);
+  border-left: 3px solid var(--primary);
+  font-weight: 600;
+}
+
+/* Aqui seria a customização do divisor da navegação rapida com a parte dos filtros */
+.sidebar-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 10px 0 24px 0;
+}
+
+/* Aqui é o ajuste posição do titulo da parte dos filtros  */
+.sidebar-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Aqui é o titulo da parte dos filtros */
+.sidebar-filters h3 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+/* Aqui é o ajuste do posiçãao do formulario dos filtros */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Aqui é o rotulo de cada caixa de input e select */
+.filter-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Aqui são os ajustes tanto dos filtros do estilo input e select */
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-size: 13.5px;
+  font-family: inherit;
+  transition: var(--transition-smooth);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e63946' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 40px; 
+}
+
+/* Aqui é a cor do texto dos placeholder */
+.filter-group input::placeholder {
+  color: #526071;
+}
+/* Aqui é quando os filtros com o sistema de input ou de seleçãao é selecionado para preencher*/
+.filter-group input:focus,
+.filter-group select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-glow);
+  background: var(--bg-card-hover);
+}
+
+/* Aqui são os posiconamento das caaixas de formulario */
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Aqui é mais um ajuste no posicionamento, agora ele centraliza o texto que o usuario digitar e também deixa os campos no mesmo tamanho */
+.range-inputs input {
+  flex: 1;
+  text-align: center;
+}
+
+/* Aqui é o hifen que divide a caixa de min e max  */
+.range-separator {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* aqui remove as setinhas dos inputs do intervalo ano */
+.range-inputs input::-webkit-outer-spin-button,
+.range-inputs input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Aqui é o botão de limpar os filtros */
+.btn-reset {
+  margin-top: 8px;
+  background: transparent;
+  border: 1px dashed var(--border-color);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+/* Aqui é uma animação de quando você passa o mouse no botão ele brilhar */
+.btn-reset:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(230, 57, 70, 0.05);
+}
+
+/* Aqui é o painel principal */
+.dashboard-main {
+  padding: 40px;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* Aqui é o ajustes do cabeçario do painel */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+/* Aqui é a personalização do span */
+.dashboard-header span {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 1.5px;
+}
+
+/* Aqui é o posicionamento do titulo deo painel */
+.header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+/* Aqui é a personalização do titulo */
+.dashboard-header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+/* Aqui é o ajuste de posiconamento da badge de online e offline */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Aqui é a personalização da tag de online */
+.status-badge.online {
+  background: rgba(6, 214, 160, 0.1);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(6, 214, 160, 0.2);
+  animation: pulse-green 2s infinite;
+}
+
+/* Aqui é a personalziação da tag offline */
+.status-badge.demo {
+  background: rgba(248, 150, 30, 0.1);
+  color: var(--accent-amber);
+  border: 1px solid rgba(248, 150, 30, 0.2);
+  animation: pulse-amber 2s infinite;
+}
+
+/* Aqui é configuração do neon da tag online e também a animação pra deixaar ele pulsando */
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(6, 214, 160, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(6, 214, 160, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(6, 214, 160, 0); }
+}
+
+/* Aqui é a configuração do neon da tag offline e também a animação pra deixar ele pulsanado */
+@keyframes pulse-amber {
+  0% { box-shadow: 0 0 0 0 rgba(248, 150, 30, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(248, 150, 30, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(248, 150, 30, 0); }
+}
+
+/* Aqui é a configuração dos botões primarios reutilizaveis */
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+/* Aqui é iluminação de quando passa o mouse no botão */
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--primary-glow);
+}
+
+/* Aqui é como fica o botão após ele ser apertado */
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Aqui é a configuração dos botões secundarios reutilizaveis */
+.btn-secondary {
+  background: #252e3c;
+  color: var(--text-main);
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+/* Aqui é iluminação de quando passa o mouse no botão */
+.btn-secondary:hover {
+  background: #344054;
+  color: #fff;
+}
+
+/* Aqui é a configuração dos widgets e os cards */
+.widget {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-md);
+}
+
+/* Aqui é a sessão de estatiscas (KPIS) */
+.dashboard-stats-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* Aqui é o ajuste de posiconamento para os widgtes KPI ficarem lado a lado*/
+.stats-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Aqui é o modelos dos cards que ficam nos widgtes */
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+/* Aqui é a animação que acontece quando você passa o mouse nos widgets */
+.kpi-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Aqui é a configuração do enquadrameento dos emojis dentro do widgets */
+.kpi-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  border: 1px solid var(--border-color);
+}
+
+/* Aqui é é a personalização da moldura dos emojis pra ficarem bem enquadrados */
+.kpi-card:nth-child(1) .kpi-icon { background: rgba(230, 57, 70, 0.08); color: var(--primary); }
+.kpi-card:nth-child(2) .kpi-icon { background: rgba(72, 149, 239, 0.08); color: var(--accent-indigo); }
+.kpi-card:nth-child(3) .kpi-icon { background: rgba(6, 214, 160, 0.08); color: var(--accent-cyan); }
+.kpi-card:nth-child(4) .kpi-icon { background: rgba(248, 150, 30, 0.08); color: var(--accent-amber); }
+
+/* Aqui é o ajuste de posicionamento do texto dentro do widgets */
+.kpi-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Aqui é a personalização do Span, que seria o titulo superior */
+.kpi-content span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Aqui é a personalização do Strong, que seria o numero ou o nome em principal no card */
+.kpi-content strong {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  margin: 2px 0;
+  line-height: 1;
+}
+
+/* Aqui é a personalização do Small, que servem como pequenas legendas no card */
+.kpi-content small {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Aqui é a organização dos graficos, onde coloca eles lado a lado */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* Aqui é o modelo que ficam os cards do graficos */
+.chart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Aqui é a personalização do titulo dos graficos */
+.chart-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: -0.2px;
+  border-left: 3px solid var(--primary);
+  padding-left: 10px;
+}
+
+/* Aqui é uma mensagem que aparece quando não tem dados para o grafico mostrar */
+.no-data {
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Aqui são as linhas do grafico */
+.custom-chart-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Aqui é a estrutura na barra do grafico */
+.custom-bar-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 65px;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Aqui é rotulo para mostrar qual é nome do dado que tá no grafico */
+.bar-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Aqui é as legendas que ficam abaixo do rotulo, na parte de grafico de classificaçãopor idade  */
+.label-year {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: block;
+}
+
+/* Aqui é o fundo da barra do grafico de quando ela não foi preenchida */
+.bar-track {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Aqui é fundo da barra do grafico de quando ela começaa a ser preenchida da esquerda para a direita */
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: loadBar 0.8s ease-out forwards;
+}
+
+/* Aqui é a animação que faz a barra começar do 0% até o 100% */
+@keyframes loadBar {
+  from { width: 0%; }
+}
+
+/* Aqui é a cor da barra quando ela vai sendo preenchida no grafico de top marcas */
+.bar-fill.brand {
+  background: linear-gradient(90deg, #e63946, #f75562);
+}
+
+/* A barra "New", "Semi" e "Classics", são as cores das barras do grafico de classificação por ano */
+.bar-fill.new {
+  background: linear-gradient(90deg, #06d6a0, #4cc9f0);
+}
+
+.bar-fill.semi {
+  background: linear-gradient(90deg, #4895ef, #3f37c9);
+}
+
+.bar-fill.classic {
+  background: linear-gradient(90deg, #f8961e, #f9c74f);
+}
+
+/* Aqui é o resultados do grafico */
+.bar-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  text-align: right;
+}
+
+/* Aqui é resultado do grafico em porcentagem */
+.bar-value small {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+/* Aqui é o widget do stock */
+.list-widget {
+  margin-top: 10px;
+}
+
+/* Aqui arruma o poscionameto do cabeçario do widget de stock */
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Aqui personaliza o titulo do stock */
+.widget-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
+/* Aqui é como se fosse uma nota em cima do titulo */
+.widget-header span {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 1px;
+}
+
+/* Aqui junta o texto "ordernar por:" com a caixa de seleção de ordenação */
+.sorting-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sorting-container label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Aqui é personalização do seletor de ordenação */
+.sorting-container select {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  outline: none;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Aqui é configuração das opções do seletor */
+.sorting-container select option {
+  background-color: var(--bg-card); 
+  color: #fff;               
+  padding: 10px;
+}
+
+/* Aqui é quando você clica no seletor, ai as bordas dele acende */
+.sorting-container select:focus {
+  border-color: var(--primary);
+}
+
+/* Aquqi cria um layout automatico para os cards dos carros com 3 colunas iguais*/
+.carros-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Aqui é a personalização dos cards de veiculos no stock e seus ajustes */
+.carro-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  transition: var(--transition-smooth);
+}
+
+/* Aqui é a animação que acontece quando você passa o mouse nos cards de veiculos no stock */
+.carro-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Aqui é o ajuste do cabeçario */
+.carro-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+/* Aqui é o ajuste e personaalizaçãao do codigo do carro que se tornou uma tag */
+.carro-code-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(230, 57, 70, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Aqui é o ajuste e personalização do ano de fabricação do veiculo que se tornou um badge*/
+.carro-year-badge {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Aqui é o tamanho do corpo do card */
+.carro-card-body {
+  flex: 1;
+}
+
+/* Aqui é o titulo do card que seria o nome do veiculo */
+.carro-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+/* Aqui seria tipo uma grade onde mostra os detalhes técnicos que no caso seria a marca e a linha do carro */
+.carro-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+  background: rgba(255, 255, 255, 0.01);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* Aqui é posicionamento do conteudo dentro da grade */
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Aqui seria o ajustes dos titulos da grade, que no caso seria a marca e a linha */
+.detail-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Aqui é a personalização das especificações já da marca e da linha  */
+.detail-value {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Aqui é o posicionamento dos botões do card */
+.carro-card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Aqui é a personalização dos botões */
+.carro-card-actions button {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+/* Aqui é a personalização do botão de editar */
+.btn-edit {
+  background: #252e3c;
+  color: var(--text-main);
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Aqui é quando você passa o mouse no botão */
+.btn-edit:hover {
+  background: #344054;
+  color: #fff;
+}
+
+/* Aqui é a personalização ddo botãao de excluir */
+.btn-delete {
+  background: rgba(230, 57, 70, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(230, 57, 70, 0.15) !important;
+}
+
+/* Aqio é quaando você passa o mouse no deletar */
+.btn-delete:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Caixa exibida quando a pesquisa não devolve nenhum resultado */
+.empty-state {
+  text-align: center;
+  padding: 60px 40px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+/* Ícone grande ou Emoji central da caixa vazia */
+.empty-state-icon {
+  font-size: 42px;
+  margin-bottom: 16px;
+}
+
+/* Aqui é a personalização do titulo da caixa vazia */
+.empty-state h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+/* Aqui é a personalizaaçãao do paragrafo da caixa vazia */
+.empty-state p {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Aqui é o ajuste de posicionamento do widget de carregamento */
+.loading-widget {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+/* Aqui é o posicionamento da bolinha de loading */
+.loading-spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Aqui é a bolinha de loading */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(230, 57, 70, 0.1);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Aqui é uma regra matematica para o loop do não ficar quebrada na hora de repetir */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-spinner-container p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Aqui é uma sobreposição de quando abre os fomularios que bloquea o site e desfoca o fundo */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 7, 10, 0.8);
+  backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+/* Aqui é o ajuste dos formularios */
+.modal {
+  width: min(560px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-lg);
+  animation: modal-enter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Aqui é a animção de quando o formulario se abre */
+@keyframes modal-enter {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Aqui é o ajuste do cabeçario do formulario e o botão de fechar */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 14px;
+}
+
+/* Aqui é a personaalização do titulo do formulario */
+.modal-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+/* Aqui é a personalização de fechar o formulario */
+.modal-close {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+/* Aqui é como o botão fica quando você passa o mouse nele */
+.modal-close:hover {
+  background: rgba(230, 57, 70, 0.1);
+  color: var(--primary);
+  border-color: rgba(230, 57, 70, 0.2);
+}
+
+/* Aqui é o ajuste de estrutura do formulario */
+.carro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Aqui é o bloco indiviual de cada pergunta do formulario */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Aqui faz uma especie de duas colunas que divide campos de texto pequenos, que são a Marca e a Linha/Modelo */
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Aqui são os titulos de cada pergunta do campo de texto */
+.carro-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Aqui é a configuração das caixas de texto  */
+.carro-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-dark);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+/* Aqui é os texto de exemplos que ficam na caixa de texto do formulario */
+.carro-form input::placeholder {
+  color: #4b5563;
+}
+
+/* Aqui é uma alteração visual de quando uma das caixas dde texto está selecionada para uso */
+.carro-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-glow);
+}
+
+/* Remove as setinhas padrão do navegador dentro do formulário */
+.carro-form input::-webkit-outer-spin-button,
+.carro-form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Aqui é o ajuste de poscionamento dos botões do formulario */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+
+/* Aqui são Regras de responsividades, onde muda a arquitetura do codigo para se adaptar para usuarios independente da plataforma ou da resolução da tela e etc... */
+/* Aqui é o Ecrã para monitores até uma largura dede 1200px  */
+@media (max-width: 1200px) {
+  .carros-grid {
+    /* Reduz as grades de carros de 3 para 2 colunas para não esmagar os cartões */
+    grid-template-columns: repeat(2, 1fr);
+  } /* Reduz os cartões KPI superiores de 4 para 2 colunas */
+  .stats-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Aqui é o ecrã para tables até 900 de largura */
+@media (max-width: 900px) {
+  /* Desativa a divisão lado a lado; a sidebar passa para cima e o conteúdo para baixo */
+  .dashboard-shell {
+    grid-template-columns: 1fr;
+  }
+  /* A barra lateral deixa de estar fixa e passa a comportar-se como um bloco normal no topo */
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 24px;
+  }
+  /* Os dois gráficos deixam de estar lado a lado e ficam empilhados na vertical */
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Aqui é uma configuração de ecrã para celulares que chegam até 690px de largura*/
+@media (max-width: 640px) {
+  /* Força todas as grelhas (Carros e KPIs) a exibirem apenas 1 coluna (tudo empilhado) */
+  .carros-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  /* O cabeçalho do site alinha os elementos na vertical em vez de ponta a ponta */
+  .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+  /* Campos duplos do formulário passam a ocupar uma linha inteira cada um */
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+   /* O botão principal estica para ocupar a largura total do ecrã do telemóvel */
+  .btn-primary {
+    width: 100%;
+  }
+}
