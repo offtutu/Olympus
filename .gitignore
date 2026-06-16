@@ -71,3 +71,32 @@ pnpm-debug.log*
 *.swp
 *.swo
 ~$*
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+/.pub-cache/
+pubspec.lock
+
+# Build outputs
+**/build/
+**/android/app/build/
+
+# Android/Gradle
+.gradle/
+**/android/.gradle/
+local.properties
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+*.xcworkspace
+DerivedData/
+
+# Flutter generated files
+.flutter-plugins
+.metadata
+

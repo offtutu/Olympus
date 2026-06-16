@@ -8,6 +8,7 @@ O projeto está dividido em duas aplicações:
 
 - `back-end/olympus`: API REST em Java com Spring Boot.
 - `front-end/olympusweb`: aplicação web em React.
+ - `mobile/olympusapp`: aplicativo móvel em Flutter (Android/iOS).
 
 Principais recursos:
 
@@ -40,6 +41,10 @@ Front-end:
 - React Scripts
 - CSS modular por tela/componente
 
+Mobile:
+
+- Flutter
+
 ## Estrutura
 
 ```text
@@ -66,6 +71,19 @@ Front-end:
         │   ├── pages/
         │   └── services/
         └── package.json
+
+```
+
+Além disso, o repositório contém o app móvel Flutter:
+
+```text
+└── mobile/
+  └── olympusapp/
+    ├── lib/
+    ├── android/
+    ├── ios/
+    └── pubspec.yaml
+```
 ```
 
 ## Pré-requisitos
@@ -74,6 +92,7 @@ Front-end:
 - Node.js e npm
 - PostgreSQL
 - Git
+ - Flutter SDK (somente se for usar o app móvel)
 
 ## Configuração do Banco
 
@@ -255,6 +274,28 @@ Para rodar os testes do front-end:
 cd front-end/olympusweb
 npm test
 ```
+
+## Rodando o App Mobile
+
+Pré-requisitos: instale o Flutter SDK e configure um emulador ou dispositivo.
+
+No diretório do app mobile:
+
+```powershell
+cd mobile/olympusapp
+flutter pub get
+flutter run
+```
+
+Para gerar um build Android:
+
+```powershell
+cd mobile/olympusapp
+flutter build apk --release
+```
+
+Observação: o app consome a API do back-end em `http://localhost:8080` por padrão — ajuste a URL caso use dispositivo físico ou servidor diferente.
+
 
 ## Segurança
 
