@@ -8,7 +8,7 @@ O projeto está dividido em duas aplicações:
 
 - `back-end/olympus`: API REST em Java com Spring Boot.
 - `front-end/olympusweb`: aplicação web em React.
- - `mobile/olympusapp`: aplicativo móvel em Flutter (Android/iOS).
+ - `mobile/olympusapp`: aplicativo móvel em Flutter (Android).
 
 Principais recursos:
 
